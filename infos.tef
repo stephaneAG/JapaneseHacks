@@ -1,0 +1,343 @@
+#! /usr/bin/env bash
+
+# R: to display some specific char, we can use the following syntax:
+echo -e "\xE2\x98\xA0 !"
+# ( the above 'll display a pirate skull head ;p )
+
+#### Japanese Romanji, Hiragana & Ketakana ideograms correspondancies ####
+
+## Chars & ideograms sets ##
+
+## Romanji's
+romanji_a="a"
+romanji_i="i"
+romanji_u="u"
+romanji_e="e"
+romanji_o="o"
+
+romanji_ka="ka"
+romanji_ki="ki"
+romanji_ku="ku"
+romanji_ke="ke"
+romanji_ko="ko"
+
+romanji_sa="sa"
+romanji_shi="shi"
+romanji_su="su"
+romanji_se="se"
+romanji_so="so"
+
+romanji_ta="ta"
+romanji_chi="chi"
+romanji_tsu="tsu"
+romanji_te="te"
+romanji_to="to"
+
+romanji_na="na"
+romanji_ni="ni"
+romanji_nu="nu"
+romanji_ne="ne"
+romanji_no="no"
+
+romanji_ha="ha"
+romanji_hi="hi"
+romanji_fu="fu"
+romanji_he="he"
+romanji_ho="ho"
+
+romanji_ma="ma"
+romanji_mi="mi"
+romanji_mu="mu"
+romanji_me="me"
+romanji_mo="mo"
+
+romanji_ya="ya"
+romanji_yu="yu"
+romanji_yo="yo"
+
+romanji_ra="ra"
+romanji_ri="ri"
+romanji_ru="ru"
+romanji_re="re"
+romanji_ro="ro"
+
+romanji_wa="wa"
+romanji_wo="wo"
+
+romanji_n="-n"
+
+romanji_ga="ga"
+romanji_gi="gi"
+romanji_gu="gu"
+romanji_ge="ge"
+romanji_go="go"
+
+romanji_za="za"
+romanji_ji="ji"
+romanji_zu="zu"
+romanji_ze="ze"
+romanji_zo="zo"
+
+romanji_da="da"
+romanji_ji="ji"
+romanji_zu="zu"
+romanji_de="de"
+romanji_do="do"
+
+romanji_ba="ba"
+romanji_bi="bi"
+romanji_bu="bu"
+romanji_be="be"
+romanji_bo="bo"
+
+romanji_pa="pa"
+romanji_pi="pi"
+romanji_pu="pu"
+romanji_pe="pe"
+romanji_po="po"
+
+
+## Hiragana's
+hiragana_a="\xE3\x81\x82"   # ぁ
+hiragana_i="\xE3\x81\x83"   # ぃ
+hiragana_u="\xE3\x81\x85"   # ぅ
+hiragana_e="\xE3\x81\x87"   # ぇ
+hiragana_o="\xE3\x81\x89"   # ぉ
+
+hiragana_ka="\xE3\x82\x95"  # ゕ
+hiragana_ki="\xE3\x81\x8D"  # き
+hiragana_ku="\xE3\x81\x8F"  # く
+hiragana_ke="\xE3\x81\x91"  # け
+hiragana_ko="\xE3\x81\x93"  # こ
+
+hiragana_sa="\xE3\x81\x95"  # さ
+hiragana_shi="\xE3\x81\x97" # し
+hiragana_su="\xE3\x81\x99"  # す
+hiragana_se="\xE3\x81\x9B"  # せ
+hiragana_so="\xE3\x81\x9D"  # そ
+
+hiragana_ta="\xE3\x81\x9F"  # た
+hiragana_chi="\xE3\x81\xA1" # ち
+hiragana_tsu="\xE3\x81\xA3" # っ
+hiragana_te="\xE3\x81\xA6"  # て
+hiragana_to="\xE3\x81\xA8"  # と
+
+hiragana_na="\xE3\x81\xAA"  # な
+hiragana_ni="\xE3\x81\xAB"  # に
+hiragana_nu="\xE3\x81\xAC"  # ぬ
+hiragana_ne="\xE3\x81\xAD"  # ね
+hiragana_no="\xE3\x81\xAE"  # の
+
+hiragana_ha="\xE3\x81\xAF"  # は
+hiragana_hi="\xE3\x81\xB2"  # ひ
+hiragana_fu="\xE3\x81\xB5"  # ふ
+hiragana_he="\xE3\x81\xB8"  # へ
+hiragana_ho="\xE3\x81\xBB"  # ほ
+
+hiragana_ma="\xE3\x81\xBE"  # ま
+hiragana_mi="\xE3\x81\xBF"  # み
+hiragana_mu="\xE3\x82\x80"  # む
+hiragana_me="\xE3\x82\x81"  # め
+hiragana_mo="\xE3\x82\x82"  # も
+
+hiragana_ya="\xE3\x82\x82"  # ゃ
+hiragana_yu="\xE3\x82\x85"  # ゅ
+hiragana_yo="\xE3\x82\x87"  # ょ
+
+hiragana_ra="\xE3\x82\x87"  # ら
+hiragana_ri="\xE3\x82\x8A"  # り
+hiragana_ru="\xE3\x82\x8B"  # る
+hiragana_re="\xE3\x82\x8C"  # れ
+hiragana_ro="\xE3\x82\x8D"  # ろ
+
+hiragana_wa="\xE3\x82\x8D"  # ゎ
+hiragana_wi="\xE3\x82\x90"  # ゐ [added]
+hiragana_vu="\xE3\x82\x94"  # ゔ [added]
+hiragana_we="\xE3\x82\x91"  # ゑ [added]
+hiragana_wo="\xE3\x82\x92"  # を
+
+hiragana_n="\xE3\x82\x92"   # ん
+
+hiragana_ga="\xE3\x81\x8C"  # が
+hiragana_gi="\xE3\x81\x8E"  # ぎ
+hiragana_gu="\xE3\x81\x90"  # ぐ
+hiragana_ge="\xE3\x81\x92"  # げ
+hiragana_go="\xE3\x81\x94"  # ご
+
+hiragana_za="\xE3\x81\x96"  # ざ
+hiragana_ji="\xE3\x81\x98"  # じ
+hiragana_zu="\xE3\x81\x9A"  # ず
+hiragana_ze="\xE3\x81\x9C"  # ぜ
+hiragana_zo="\xE3\x81\x9E"  # ぞ
+
+hiragana_da="\xE3\x81\xA0"  # だ
+hiragana_ji="\xE3\x81\xA2"  # ぢ
+hiragana_zu="\xE3\x81\xA5"  # づ
+hiragana_de="\xE3\x81\xA7"  # で
+hiragana_do="\xE3\x81\xA9"  # ど
+
+hiragana_ba="\xE3\x81\xB0"  # ば
+hiragana_bi="\xE3\x81\xB3"  # び
+hiragana_bu="\xE3\x81\xB6"  # ぶ
+hiragana_be="\xE3\x81\xB9"  # べ
+hiragana_bo="\xE3\x81\xBC"  # ぼ
+
+hiragana_pa="\xE3\x81\xA9"  # ぱ
+hiragana_pi="\xE3\x81\xB4"  # ぴ
+hiragana_pu="\xE3\x81\xB7"  # ぷ
+hiragana_pe="\xE3\x81\xBA"  # ぺ
+hiragana_po="\xE3\x81\xBD"  # ぽ
+
+
+## Katakana's
+katakana_a="a"
+katakana_i="i"
+katakana_u="u"
+katakana_e="e"
+katakana_o="o"
+
+katakana_ka="ka"
+katakana_ki="ki"
+katakana_ku="ku"
+katakana_ke="ke"
+katakana_ko="ko"
+
+katakana_sa="sa"
+katakana_shi="shi"
+katakana_su="su"
+katakana_se="se"
+katakana_so="so"
+
+katakana_ta="ta"
+katakana_chi="chi"
+katakana_tsu="tsu"
+katakana_te="te"
+katakana_to="to"
+
+katakana_na="na"
+katakana_ni="ni"
+katakana_nu="nu"
+katakana_ne="ne"
+katakana_no="no"
+
+katakana_ha="ha"
+katakana_hi="hi"
+katakana_fu="fu"
+katakana_he="he"
+katakana_ho="ho"
+
+katakana_ma="ma"
+katakana_mi="mi"
+katakana_mu="mu"
+katakana_me="me"
+katakana_mo="mo"
+
+katakana_ya="ya"
+katakana_yu="yu"
+katakana_yo="yo"
+
+katakana_ra="ra"
+katakana_ri="ri"
+katakana_ru="ru"
+katakana_re="re"
+katakana_ro="ro"
+
+katakana_wa="wa"
+katakana_wo="wo"
+
+katakana_n="-n"
+
+katakana_ga="ga"
+katakana_gi="gi"
+katakana_gu="gu"
+katakana_ge="ge"
+katakana_go="go"
+
+katakana_za="za"
+katakana_ji="ji"
+katakana_zu="zu"
+katakana_ze="ze"
+katakana_zo="zo"
+
+katakana_da="da"
+katakana_ji="ji"
+katakana_zu="zu"
+katakana_de="de"
+katakana_do="do"
+
+katakana_ba="ba"
+katakana_bi="bi"
+katakana_bu="bu"
+katakana_be="be"
+katakana_bo="bo"
+
+katakana_pa="pa"
+katakana_pi="pi"
+katakana_pu="pu"
+katakana_pe="pe"
+katakana_po="po"
+
+
+
+##  display in nice squares ;p ##
+# R: digg how to save font size, increase it / use it , the nrestore it ( .. )
+
+# color helpers
+
+# littl' tabs test
+#echo -e "\xE3\x81\x82 \t \xE3\x81\x82 \t \xE3\x81\x82"
+
+# intro
+echo 
+
+# hack the promp to take less space in our big-font-sized term & to have a hacky style ;P
+PS1="\$(echo -e \"\xE2\x98\xA0 \")"
+# R: launch a term window usingthe correct profile for the font-size adjustement
+# ex, using: gnome-terminal --profile=JapaneseStuff
+
+## first row: the 8 first squares
+# first column: a's
+echo -e \
+        "   " "$romanji_a  $hiragana_a / $katakana_a" \
+        "\t" "$romanji_ka  $hiragana_ka / $katakana_ka" \
+        "\t" "$romanji_sa  $hiragana_sa / $katakana_sa" \
+        "\t" "$romanji_ta  $hiragana_ta / $katakana_ta" \
+        "\t" "$romanji_na  $hiragana_na / $katakana_na" \
+        "\t" "$romanji_ha  $hiragana_ha / $katakana_ha" \
+        "\t" "$romanji_ma  $hiragana_ma / $katakana_ma" \
+        "\t" "$romanji_ya  $hiragana_ya / $katakana_ya"
+
+# second column: i's
+echo -e \
+        "   " "$romanji_i  $hiragana_i / $katakana_i" \
+        "\t" "$romanji_ki  $hiragana_ki / $katakana_ki" \
+        "\t" "$romanji_shi  $hiragana_shi / $katakana_shi" \
+        "\t" "$romanji_chi  $hiragana_chi / $katakana_chi" \
+        "\t" "$romanji_ni  $hiragana_ni / $katakana_ni" \
+        "\t" "$romanji_hi  $hiragana_hi / $katakana_hi" \
+        "\t" "$romanji_mi  $hiragana_mi / $katakana_mi" \
+        #"\t" " -  - / -"
+
+# third column: u's
+echo -e \
+        "   " "$romanji_u  $hiragana_u / $katakana_u" \
+        "\t" "$romanji_ku  $hiragana_ku / $katakana_ku" \
+        "\t" "$romanji_su  $hiragana_su / $katakana_su" \
+        "\t" "$romanji_tsu  $hiragana_tsu / $katakana_tsu" \
+        "\t" "$romanji_nu  $hiragana_nu / $katakana_nu" \
+        "\t" "$romanji_fu  $hiragana_fu / $katakana_fu" \
+        "\t" "$romanji_mu  $hiragana_mu / $katakana_mu" \
+        "\t" "$romanji_yu  $hiragana_yu / $katakana_yu"
+
+# inner space
+echo
+
+## second row: the 7 squares left
+echo -e \
+        "  " "$romanji_ra  $hiragana_ra / $katakana_ra" \
+        "\t" "$romanji_wa  $hiragana_wa / $katakana_wa" \
+        "\t" "$romanji_ga  $hiragana_ga / $katakana_ga" \
+        "\t" "$romanji_za  $hiragana_za / $katakana_za" \
+        "\t" "$romanji_da  $hiragana_da / $katakana_da" \
+        "\t" "$romanji_ba  $hiragana_ba / $katakana_ba" \
+        "\t" "$romanji_pa  $hiragana_mpa / $katakana_pa" \
