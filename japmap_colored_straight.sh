@@ -143,7 +143,7 @@ hiragana_mu="\xE3\x82\x80"  # む
 hiragana_me="\xE3\x82\x81"  # め
 hiragana_mo="\xE3\x82\x82"  # も
 
-hiragana_ya="\xE3\x82\x82"  # ゃ
+hiragana_ya="\xE3\x82\x84"  # ゃ
 hiragana_yu="\xE3\x82\x85"  # ゅ
 hiragana_yo="\xE3\x82\x87"  # ょ
 
